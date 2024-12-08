@@ -9,28 +9,35 @@ import { useAuthStore } from '../../store/authStore';
 
 export default function LoginSignup() {
   
-  // Individual states for name, email, and password
+  // Individual states for name, email, and password || should I change to an array?
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { signup, error } = useAuthStore();
 
-
-  const [action, setAction] = useState("Login"); // Toggle Login/Signup
+  const [action, setAction] = useState("Login"); // Toggle Login or Signup
 
   /** HANDLES AND CONFIRMS LOGIN AND SIGNUP FUNCTIONS */
-  const handleLogin = (e) => {
+  const { login } = useAuthStore();
+  const handleLogin = async (e) => {
     e.preventDefault();
+
+    await login(email, password);
+
     if (!email || !password) {
       alert('Please fill in all required fields.');
       return;
     }
-    console.log("Logging in with:", { email, password });
   };
 
+  const { signup } = useAuthStore();
   const handleSignup = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      alert('Please fill in all required fields.');
+      return;
+    }
 
     try{
       await signup(email, password, name);
@@ -81,22 +88,26 @@ export default function LoginSignup() {
           />
         </div>
 
-        {/* PASSWORD RETRIEVAL */}
+        {/* BUTTON FOR PASSWORD RETRIEVAL */}
         {action === "Login" && (
           <div className="forgot-password">
             Forgot Password? <span><Link to='/forgot-password'>Click Here!</Link></span>
           </div>
         )}
 
-        {/* SUBMIT BUTTON */}
+        {/* THIS IS THE SUBMIT BUTTON */}
         <div className="submit-container">
-          <button type="submit" className="submit">
+          <button 
+            type="button"
+            onClick={action === "Login" ? handleLogin : handleSignup}
+          >
             {action === "Login" ? "Login" : "Sign Up"}
           </button>
         </div>
+
       </form>
 
-      {/* TOGGLE BETWEEN SIGNUP OR LOGIN */}
+      {/* THIS ONE TOGGLE BETWEEN SIGNUP OR LOGIN */}
       <div className="toggle-action">
         {action === "Login" ? (
           <div

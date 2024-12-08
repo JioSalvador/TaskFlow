@@ -8,9 +8,9 @@ export const generateTokenAndSetCookie = (res, userId) => {
 
         res.cookie('token', token,
             {
-                httpOnly: true, //prevent XSS attacks
+                httpOnly: true, // Stackoverflow says this prevent XSS attacks, 🤷 idk what that is
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: "strict", // prevents CRF attacks
+                sameSite: "strict", // Stackoverflow says this prevents CRF attacks, 🤷 idk what that is
                 maxAge: 7 * 24 * 60 * 60 * 1000
             }
         );

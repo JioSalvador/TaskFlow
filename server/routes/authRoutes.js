@@ -4,8 +4,15 @@ import { verifyToken } from '../middleware/verifyToken.js';
 const router = express.Router();
 
 router.get('/check-auth', verifyToken, checkAuth)
-router.post('/LoginSignup', signup);
-router.post('/LoginSignup', login);
+router.post('/LoginSignup', async (req, res) => {
+    const { email, password, name } = req.body;
+    if (name) {
+      await signup(req, res);
+    } else {
+      await login(req, res);
+    }
+  });
+  
 router.post('/logout', logout);
 
 router.post('/verify-email', verifyEmail);

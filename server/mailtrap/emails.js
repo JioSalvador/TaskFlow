@@ -12,7 +12,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
             html: VERIFICATION_EMAIL_TEMPLATE.replace(
                 "{verificationCode}",
                 verificationToken
-            ), // replace the "verificationCode" in the template with the Token
+            ), // This replaces the "verificationCode" in the template with the Token
             category: "Email Verification",
         })
         console.log('Email sent successfully', response);

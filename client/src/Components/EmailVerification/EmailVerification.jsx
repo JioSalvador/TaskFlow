@@ -15,34 +15,30 @@ const EmailVerification = () => {
   const handleChange = (index, value) => {
     const newCode = [...code];
 
-    // Handle pasted content
     if (value.length > 1) {
-      const pastedCode = value.slice(0, 6).split(""); // Split pasted code into digits
+      const pastedCode = value.slice(0, 6).split("");
       for (let i = 0; i < 6; i++) {
-        newCode[i] = pastedCode[i] || ""; // Assign each pasted digit to the corresponding field
+        newCode[i] = pastedCode[i] || "";
       }
       setCode(newCode);
 
-      // Focus on the last non-empty input or the first empty one
       const lastFilledIndex = newCode.findLastIndex((digit) => digit !== "");
       const focusIndex = lastFilledIndex < 5 ? lastFilledIndex + 1 : 5;
-      inputRefs.current[focusIndex].focus(); // Move the focus to the next input field
+      inputRefs.current[focusIndex].focus();
     } else {
-      // Handle normal typing (single character)
       newCode[index] = value;
       setCode(newCode);
 
-      // Move focus to the next input field if a value is entered
       if (value && index < 5) {
-        inputRefs.current[index + 1].focus(); // Focus the next input
+        inputRefs.current[index + 1].focus();
       }
     }
   };
 
-  // Handle key down (for backspace functionality)
+
   const handleKeyDown = (index, e) => {
     if (e.key === "Backspace" && !code[index] && index > 0) {
-      inputRefs.current[index - 1].focus(); // Move focus to the previous field on backspace
+      inputRefs.current[index - 1].focus();
     }
   };
 
@@ -50,8 +46,8 @@ const EmailVerification = () => {
     e.preventDefault();
     const verificationCode = code.join('');
     try {
-      await verifyEmail(verificationCode); // Verify the code with your backend
-      navigate('/'); // Redirect to home page or wherever after success
+      await verifyEmail(verificationCode);
+      navigate('/'); // redirects you to the mainpage
       toast.success("Email verified successfully");
     } catch (error) {
       console.log('Error response', error.response);
@@ -62,7 +58,7 @@ const EmailVerification = () => {
 
   useEffect(() => {
     if (code.every(digit => digit !== "")) {
-      handleSubmit(new Event('submit')); // Auto-submit when all fields are filled
+      handleSubmit(new Event('submit'));
     }
   }, [code]);
 
@@ -76,7 +72,7 @@ const EmailVerification = () => {
               key={index}
               ref={(el) => (inputRefs.current[index] = el)}
               type="text"
-              maxLength="6" // Only one character allowed per input
+              maxLength="6" // This makes the uiser copy and paste of verification code
               value={digit}
               onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}

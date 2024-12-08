@@ -9,7 +9,8 @@ export const signup = async (req, res) => {
     const { email, password, name} = req.body;
     try{
         if(!email || !password || !name){
-            throw new Error("All fields are required!")
+            console.error("All fields are required!");
+            hasEmptyField = true;
         }
 
         const userAlreadyExists = await User.findOne({email});
@@ -19,13 +20,13 @@ export const signup = async (req, res) => {
             return res.status(400).json({success: false, message: "User already exists"});
         }
 
-        const hashedPassword = await bcryptjs.hash(password, 10); // hash the password
+        const hashedPassword = await bcryptjs.hash(password, 10);
         const user = new User({
             email,
             password: hashedPassword,
             name,
             verificationToken,
-            verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000, // expires at 24 hours
+            verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000,
         })
 
         await user.save();
@@ -90,6 +91,7 @@ export const verifyEmail = async (req, res) => {
 
 export const login = async (req, res) => {
     const { email, password } = req.body
+    console.log('do you run?')
     try{
         const user = await User.findOne({ email });
         if(!user){
@@ -136,7 +138,7 @@ export const forgotPassword = async (req, res) => {
         }
 
         const resetToken = crypto.randomBytes(20).toString("hex");
-        const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000; // forgot pw req. expires 1 hr  
+        const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000;
 
         user.resetPasswordToken = resetToken;
         user.resetPasswordExpiresAt = resetTokenExpiresAt;
