@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Trello Clone</h1>
+      <h1>TaskFlow</h1>
       <Board columns={columns} cards={cards} setCards={setCards} addCard={addCard} removeCard={removeCard} />
     </div>
   );
