@@ -4,6 +4,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 import authRoutes from './routes/authRoutes.js'
+import projectRoutes from './routes/workspaceRoutes.js'
 
 import { connectDB } from './db/connectDB.js';
 
@@ -22,6 +23,7 @@ app.use(express.json()); // allows us to parse incoming requests: req.body
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes)
+app.use("/api/workspace", projectRoutes)
 
 
 app.listen(PORT, ()=> {

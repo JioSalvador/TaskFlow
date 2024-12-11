@@ -1,11 +1,11 @@
-import { create } from "zustand"; // this import is a state management library
-import axios from 'axios';
+  import { create } from "zustand"; // this import is a state management library
+  import axios from 'axios';
 
-const API_URL = "http://localhost:5000/api/auth";
+  const API_URL = "http://localhost:5000/api/auth";
 
-axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;
 
-export const useAuthStore = create((set) => ({
+  export const useAuthStore = create((set) => ({
   user: null,
   isAuthenticated: false,
   error: null,
@@ -62,6 +62,29 @@ export const useAuthStore = create((set) => ({
     }catch(err){
       set({ error: null, isCheckingAuth: false, isAuthenticated: false});
     }
+  },
+
+  forgotPassword: async (email) => {
+    set({ error: null });
+    try{
+      const response = await axios.post(`${API_URL}/forgot-password`, {email});
+      set({ message: response?.data?.message });
+    }catch(err){
+      throw err;
+    }
+  },
+
+  resetPassword: async (token, password) => {
+    set({error: null})
+    try{
+      const response = await axios.post(`${API_URL}/reset-password/${token}`, {password})
+      set({ message: response?.data?.message })
+    }catch(err){
+      set({
+        error: err.response?.data?.message || "Error resetting password"
+      })
+      throw err;
+    }
   }
-  
-}));
+
+  }));

@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css'
 import LoginSignup from './Components/LoginSignup/LoginSignup';
 import EmailVerification from './Components/EmailVerification/EmailVerification';
+import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
+import ResetPassword from './Components/ResetPassword/ResetPassword';
 import Dashboard from './Components/Dashboard/Dashboard';
 import { Toaster } from 'react-hot-toast'
 import { useAuthStore } from './store/authStore';
@@ -42,11 +44,11 @@ function App() {
   console.log("user", user)
   return (
     <div>
-      {/**<LoginSignup*/}
       <Routes>
-        <Route path='/' element = {<ProtectedRoute>
-          <Dashboard/>
-        </ProtectedRoute>}/>
+        <Route path='/' element = {
+          <ProtectedRoute>
+            <Dashboard/>
+          </ProtectedRoute>}/>
 
         <Route path='/LoginSignup' element = {
           <RedirectAuthenticatedUser>
@@ -54,7 +56,19 @@ function App() {
           </RedirectAuthenticatedUser>
         }/>
         <Route path='/verify-email' element = {<EmailVerification/>}/>
-        <Route path='/forgot-password' element = {"forgot password"}/>
+        <Route path='/forgot-password' element = {
+            <RedirectAuthenticatedUser>
+              <ForgotPassword/>
+            </RedirectAuthenticatedUser>
+        }/>
+        <Route
+          path='/reset-password/:token'
+
+          element={
+            <RedirectAuthenticatedUser>
+              <ResetPassword/>
+            </RedirectAuthenticatedUser>
+        }/>
       </Routes>
       <Toaster/>
     </div>
