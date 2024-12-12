@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, Plus, X } from 'react-feather';
 import { MdPowerSettingsNew } from 'react-icons/md';
 import { Popover } from 'react-tiny-popover';
-import { useWorkspaceStore } from '../../../store/workspaceStore'; // Import workspace store
+import { useWorkspaceStore } from '../../../store/workspaceStore';
+import { useAuthStore } from '../../../store/authStore';
 import './Sidebar.css';
 
 const Sidebar = ({ onSelectWorkspace }) => {
@@ -16,13 +17,12 @@ const Sidebar = ({ onSelectWorkspace }) => {
     const [showpop, setShowpop] = useState(false);
 
     const { workspaces, fetchWorkspaces, createWorkspace } = useWorkspaceStore();
+    const { logout } = useAuthStore();
 
-    // Fetch workspaces on load
     useEffect(() => {
         fetchWorkspaces();
     }, [fetchWorkspaces]);
 
-    // Handle workspace creation
     const handleCreateWorkspace = async () => {
         if (!boardData.name || !boardData.bgcolor) {
             console.error('Please provide both a workspace name and color');
@@ -33,6 +33,10 @@ const Sidebar = ({ onSelectWorkspace }) => {
         fetchWorkspaces();
         setBoardData(blankBoard);
         setShowpop(false);
+    };
+
+    const handleLogout = async () => {
+        await logout();
     };
 
     return (
@@ -122,7 +126,7 @@ const Sidebar = ({ onSelectWorkspace }) => {
             </div>
 
             <div className="logout">
-                <button>
+                <button onClick={handleLogout} className="logout-btn">
                     <MdPowerSettingsNew size={18} />
                     {!collapsed && <span>Logout</span>}
                 </button>

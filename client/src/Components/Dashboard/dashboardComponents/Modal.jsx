@@ -1,8 +1,8 @@
 import React from 'react';
-import './Modal.css';  // You can style this modal as per your design preferences
+import './Modal.css';
 
 const Modal = ({ isOpen, onClose, cardData }) => {
-    if (!isOpen) return null;  // Don't render the modal if it's closed
+    if (!isOpen) return null;
 
     return (
         <div className="modal-overlay">

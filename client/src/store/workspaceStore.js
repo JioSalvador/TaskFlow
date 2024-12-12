@@ -1,4 +1,4 @@
-import { create } from "zustand"; // this import is a state management library
+import { create } from "zustand";
 import axios from "axios";
 
 const API_URL = "http://localhost:5000/api/workspace";
@@ -10,7 +10,7 @@ export const useWorkspaceStore = create((set) => ({
   isLoading: false,
   error: null,
 
-  // WORKSPACES
+
   fetchWorkspaces: async () => {
     set({ isLoading: true, error: null });
     try {
@@ -45,7 +45,6 @@ export const useWorkspaceStore = create((set) => ({
     }
   },
 
-  // LISTS
   addList: async (workspaceId, title) => {
     set({ error: null });
     try {
@@ -78,7 +77,6 @@ export const useWorkspaceStore = create((set) => ({
     }
   },
 
-  // TASKS
   addTask: async (workspaceId, listId, task) => {
     set({ error: null });
     try {
@@ -118,7 +116,9 @@ export const useWorkspaceStore = create((set) => ({
                   list._id === listId
                     ? {
                         ...list,
-                        tasks: list.tasks.map((task) => (task._id === taskId ? { ...task, ...updatedTask } : task)),
+                        tasks: list.tasks.map((task) =>
+                          task._id === taskId ? { ...task, ...updatedTask } : task
+                        ),
                       }
                     : list
                 ),
@@ -127,11 +127,8 @@ export const useWorkspaceStore = create((set) => ({
         );
         return { workspaces: updatedWorkspaces };
       });
-
-      res.status(200).json({ success: true, message: "Task updated successfully!" });
     } catch (err) {
-      set({ error: err.response?.data?.message || "Error updating task" });
-      res.status(500).json({ success: false, message: `Server error: ${err.message}` });
+      set({ error: err.response?.data?.message || "Error editing task" });
     }
   },
 
@@ -145,7 +142,9 @@ export const useWorkspaceStore = create((set) => ({
             ? {
                 ...workspace,
                 lists: workspace.lists.map((list) =>
-                  list._id === listId ? { ...list, tasks: list.tasks.filter((task) => task._id !== taskId) } : list
+                  list._id === listId
+                    ? { ...list, tasks: list.tasks.filter((task) => task._id !== taskId) }
+                    : list
                 ),
               }
             : workspace
