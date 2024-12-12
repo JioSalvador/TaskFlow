@@ -1,0 +1,154 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-image: url('../assets/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.share-icon {
+    margin-right: 8px;
+}
+
+.share-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #7a8180;
+    opacity: 0.85;
+}
+
+.share-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.share-button {
+    background-color: white;
+    height: 32px;
+    color: black;
+    padding: 4px 8px;
+    margin-right: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    position: relative;
+}
+
+.drag-area {
+    position: absolute;
+    padding: 16px;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.board {
+    margin-right: 12px;
+    width: 240px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #7a8180;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.list-header button {
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.droppable-area {
+    padding-top: 4px;
+}
+
+.droppable-area.dragging-over {
+    background-color: #222;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2f3532;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid #2d3331;
+}
+
+.item:hover {
+    border-color: #a0a0a0;
+}
+
+.edit-mode {
+    background-color: #383838;
+    border-color: #444;
+}
+
+.item input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+}
+
+.edit-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.edit-buttons button {
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.card-add-container {
+    margin-top: 8px;
+}
+
+.add-list-container {
+    margin-top: 8px;
+}
+
+.scrollbar-transparent {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.scrollbar-transparent::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollbar-transparent::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.scrollbar-transparent::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.edit-mode {
+    border: 2px dashed #6db3e1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+

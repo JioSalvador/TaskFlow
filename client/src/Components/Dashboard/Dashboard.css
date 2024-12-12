@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
 font-family: Arial, sans-serif;
 text-align: center;
@@ -59,4 +60,17 @@ color: white;
 border: none;
 border-radius: 3px;
 cursor: pointer;
+=======
+body{
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.dashboardContent{
+    display: flex;
+}
+
+.dashboardContentMain{
+    width: 100%;
+>>>>>>> 7e65ee4 (Initial commit with frontend and implemented workspace creation)
 }

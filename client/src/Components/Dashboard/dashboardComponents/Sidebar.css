@@ -1,0 +1,178 @@
+/* Sidebar.css */
+
+/* Sidebar Container */
+.sidebar {
+  background-color: #121417;
+  height: calc(100vh - 3rem);
+  border-right: 1px solid rgba(159, 173, 188, 0.16);
+  transition: all 0.5s linear;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+.sidebar.collapsed {
+  width: 42px;
+}
+
+.sidebar.expanded {
+  width: 280px;
+}
+
+/* Workspace Header */
+.workspace {
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(159, 173, 188, 0.16);
+}
+
+/* Board List Header */
+.boardlist {
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.boardlist h6 {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: bold;
+  align-self: center;
+}
+
+/* Board List Items */
+.boardlist-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  text-align: left;
+  font-size: 0.875rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.boardlist-item:hover {
+  background-color: #6b7280;
+}
+
+.boardlist-item span {
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  width: 2rem;
+  height: .95rem;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+/* Popover */
+.popover {
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  width: 15rem;
+  background-color: #475569;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25rem;
+  position: relative;
+}
+
+.popover img {
+  max-width: 100%;
+  height: auto;
+}
+
+.popover label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.popover input[type="text"] {
+  margin-bottom: 0.5rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  width: 200px;
+  background-color: #374151;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+.popover input[type="color"] {
+  margin-bottom: 0.5rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  width: 50px;
+  background-color: #374151;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+.popover button {
+  width: 100%;
+  height: 2rem;
+  margin-top: 0.5rem;
+  background-color: #475569;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.popover button:hover {
+  background-color: #6b7280;
+}
+
+/* Logout Button */
+.logout {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid rgba(159, 173, 188, 0.16);
+}
+
+.logout button {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-radius: 0.25rem;
+}
+
+.logout button:hover {
+  background-color: #6b7280;
+}
+
+.logout button span {
+  margin-left: 0.5rem;
+}
+
+/* Delete Workspace Button */
+.delete-workspace-btn {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.delete-workspace-btn:hover {
+  background-color: #ff1a1a;
+}

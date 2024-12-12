@@ -1,0 +1,30 @@
+.header-container {
+    background-color: #000000;
+    height: 3rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    border-bottom: 1px solid rgba(159, 173, 188, 0.16);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: #f1f5f9;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-img {
+    border-radius: 50%;
+}
